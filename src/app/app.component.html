@@ -1,12 +1,29 @@
-<h3>Signal Example</h3>
+<h3>Basic Signal Example</h3>
 <label>Theme Color: {{label}}</label><br>
-<button (click)="toggleDarkMode()">Toggle Theme Color</button>
-
-<br>
+<button (click)="toggleDarkMode()">Toggle Theme Color</button><br><br>
+<hr>
 <h3>Computed Signal Example</h3>
 <label>Total Price: {{totalPrice()}}</label>
 <br>
 <label>Quantity: </label><input type="number" value="{{quantity()}}" (change)="changeQuantity($event)"
   placeholder="Enter quantity Value">
-
+<br><br>
+<hr>
+<h3>Supermarket Signal Example</h3>
+<div>
+  <input type="text" (input)="changeFiler($event)" placeholder="Search Product">
+</div>
+<br>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  <tr *ngFor="let item of filteredProducts()">
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.price}}</td>
+  </tr>
+</table>
 <router-outlet />

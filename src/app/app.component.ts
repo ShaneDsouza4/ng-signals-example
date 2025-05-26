@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, computed, effect, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -12,6 +13,27 @@ export class AppComponent implements OnInit {
 
   title = 'ng-signals-example';
 
+  /* Signal Use Case Example 3 */
+  products = signal([
+    { id: 1, name: "Sugar", price: 2.00 },
+    { id: 1, name: "Milk", price: 3.99 },
+    { id: 1, name: "Coffee", price: 2.55 },
+  ])
+
+  //User Input filter search
+  filterName = signal('');
+
+  //Computed Signal
+  filteredProducts = computed(() => {
+    return this.products().filter(x => x.name.toLowerCase().includes(this.filterName()))
+  })
+
+  changeFiler(event: Event) {
+    let newFilterName = (event.target as HTMLInputElement).value;
+    this.filterName.set(newFilterName);
+  }
+
+  /* Computed Signal Example */
   //Computed Signal
   price = 19;
   quantity = signal(10); //Initial Value of 'quantity' signal. 
@@ -23,7 +45,7 @@ export class AppComponent implements OnInit {
     this.quantity.set((event.target as HTMLInputElement).valueAsNumber);
   }
 
-
+  /* Basic Signal Example */
   //Create signal
   themeColor = signal('light');
 
