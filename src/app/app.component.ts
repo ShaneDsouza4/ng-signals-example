@@ -1,17 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Vehicle } from './vehicle';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, VehicleListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
 
   title = 'ng-signals-example';
+
+  /* Input Signal Example */
+  allVehicles: Vehicle[] = [
+    { id: 1, make: "Toyota", model: "Camry", year: 2020, color: "Silver" },
+    { id: 2, make: "Honda", model: "Civic", year: 2019, color: "Blue" },
+    { id: 3, make: "Ford", model: "F-150", year: 2021, color: "Black" },
+    { id: 4, make: "Tesla", model: "Model 3", year: 2023, color: "White" },
+    { id: 9, make: "Kia", model: "Sportage", year: 2023, color: "White" },
+  ]
 
   /* Signal Use Case Example 3 */
   products = signal([
