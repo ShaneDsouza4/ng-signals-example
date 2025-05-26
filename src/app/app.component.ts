@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -11,6 +11,18 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit {
 
   title = 'ng-signals-example';
+
+  //Computed Signal
+  price = 19;
+  quantity = signal(10); //Initial Value of 'quantity' signal. 
+  //When 'quantity' signal value changed -> totalPrice is auto-updated.
+  totalPrice = computed(() => this.price * this.quantity()); //Read-Only. 
+
+  //Change 'quantity' and value of totalPrice is change in real-time
+  changeQuantity(event: Event) {
+    this.quantity.set((event.target as HTMLInputElement).valueAsNumber);
+  }
+
 
   //Create signal
   themeColor = signal('light');

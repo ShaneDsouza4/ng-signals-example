@@ -1,3 +1,12 @@
-<label>{{label}}</label>
-<button (click)="toggleDarkMode()">Toggle</button>
+<h3>Signal Example</h3>
+<label>Theme Color: {{label}}</label><br>
+<button (click)="toggleDarkMode()">Toggle Theme Color</button>
+
+<br>
+<h3>Computed Signal Example</h3>
+<label>Total Price: {{totalPrice()}}</label>
+<br>
+<label>Quantity: </label><input type="number" value="{{quantity()}}" (change)="changeQuantity($event)"
+  placeholder="Enter quantity Value">
+
 <router-outlet />
