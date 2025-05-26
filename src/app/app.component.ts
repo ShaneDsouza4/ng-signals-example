@@ -16,6 +16,13 @@ export class AppComponent implements OnInit {
   themeColor = signal('light');
 
   ngOnInit(): void {
+
+    //Set Value of Signal
+    //this.themeColor.set('dark');
+
+    //Update Value of Signal
+    this.themeColor.update(currentValue => currentValue === 'light' ? 'dark' : 'light');
+
     //Fetch value from signal
     document.body.className = this.themeColor();
   }
